@@ -9,7 +9,12 @@
 #ifndef TEA5767_H_
 #define TEA5767_H_
 
+#ifndef F_CPU
+#define F_CPU	8000000
+#endif
+
 #include <avr/io.h>
+#include <util/delay.h>
 #include <stdbool.h>
 
 #define TEA5767_DEVICE_ADDR		0x60
@@ -20,7 +25,7 @@
 
 typedef struct
 {
-	double	freqMHZ;
+	float	freqMHZ;
 	bool	muteFlag;
 	bool	readyFlag;
 	bool	bandLimitFlag;
@@ -30,8 +35,8 @@ typedef struct
 
 extern _radioStatus radioStatus;
 
-bool TEA5767_Init(double freqMHz);
-bool TEA5767_SetFreq(double freqMHz);
+bool TEA5767_Init(float freqMHz);
+bool TEA5767_SetFreq(float freqMHz);
 bool TEA5767_ScanFreq(uint8_t updown);
 bool TEA5767_Mute(bool on);
 bool TEA5767_GetStatus();

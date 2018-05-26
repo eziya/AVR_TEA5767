@@ -18,7 +18,7 @@
 #include "128A_USART.h"
 
 #define PRESET1	89.9
-#define PRESET2	105.7
+#define PRESET2	95.1
 #define PRESET3	95.7
 #define PRESET4	97.5
 #define PRESET5	101.5
@@ -66,7 +66,7 @@ int main(void)
 				if(TEA5767_GetStatus())
 				{
 					memset(msg, 0, sizeof(msg));
-					sprintf(msg, "Freq: [%f], Ready Flag: [%d], Signal Level: [%d], Stereo Flag: [%d], Mute Flag: [%d], Bandlimit Flag: [%d]\r\n", 
+					sprintf(msg, "Freq: [%05.1f], Ready Flag: [%d], Signal Level: [%d], Stereo Flag: [%d], Mute Flag: [%d], Bandlimit Flag: [%d]\r\n", 
 					radioStatus.freqMHZ, radioStatus.readyFlag, radioStatus.signalLevel, radioStatus.stereoFlag, radioStatus.muteFlag, radioStatus.bandLimitFlag);
 					USART0_TxBuffer((uint8_t *)msg, strlen(msg));
 				}
